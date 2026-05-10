@@ -17,6 +17,21 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { error: "Too many requests, slow down." },
+});
+app.use("/api/", limiter);
+
+const responseLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  message: { error: "Response limit reached for this session." },
+});
+app.use("/api/responses", responseLimiter);
+
 // Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
