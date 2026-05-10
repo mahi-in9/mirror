@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🪞 Mirror — Social Perception App
 
 > See yourself through your friends' eyes. Anonymously.
@@ -198,3 +199,6 @@ Uses `html2canvas` for pixel-perfect screenshot generation.
 ---
 
 Built with chaos, trust, and mystery. 🪞
+=======
+# mirror
+>>>>>>> aeed22dfb568b10d676efc8a5e4399b9431503d6
