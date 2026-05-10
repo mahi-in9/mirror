@@ -53,7 +53,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       const { data } = await api.post("/auth/register", { ...form, vibeTags });
-      
+
       login(data.token, data.user);
       toast.success("Mirror created! 🪞");
       navigate("/dashboard");
