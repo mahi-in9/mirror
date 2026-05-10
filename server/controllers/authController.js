@@ -21,14 +21,12 @@ const register = async (req, res) => {
       $or: [{ email }, { username: usernameClean }],
     });
     if (exists) {
-      return res
-        .status(409)
-        .json({
-          error:
-            exists.email === email
-              ? "Email already registered"
-              : "Username taken",
-        });
+      return res.status(409).json({
+        error:
+          exists.email === email
+            ? "Email already registered"
+            : "Username taken",
+      });
     }
 
     const hashed = await bcrypt.hash(password, 12);
@@ -52,7 +50,11 @@ const register = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Registration failed" });
+
+    res.status(500).json({
+      error: err.message,
+      stack: err.stack,
+    });
   }
 };
 
