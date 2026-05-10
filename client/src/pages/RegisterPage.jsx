@@ -52,14 +52,12 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      console.log(FormData, vibeTags);
       const { data } = await api.post("/auth/register", { ...form, vibeTags });
 
       login(data.token, data.user);
       toast.success("Mirror created! 🪞");
       navigate("/dashboard");
     } catch (err) {
-      console.log(err);
       toast.error(err.response?.data?.error || "Registration failed");
     } finally {
       setLoading(false);
